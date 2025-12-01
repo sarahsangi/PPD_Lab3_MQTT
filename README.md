@@ -49,9 +49,9 @@ python miner_node.py
 ```
 2. O programa irá conectar ao Broker e aguardar uma confirmação manual.
 
----
-
 3. Quando os 3 terminais estiverem prontos, pressione **ENTER** em cada um deles (rapidamente, um após o outro) para iniciar a sincronização e a eleição.
+
+---
 
 ## 3. Relatório Técnico
 ### 3.1. Introdução e Objetivo
