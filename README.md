@@ -100,4 +100,4 @@ O sistema foi validado com 3 participantes simultâneos. Os testes demonstraram:
 ## 4. Vídeo de Demonstração
 O vídeo abaixo demonstra a inicialização do Docker, a execução dos 3 nós, o processo de eleição automática e o ciclo de mineração contínua.
 
-**Link para o vídeo:** [ADICIONAR LINK AQUI]
+**Link para o vídeo:** [CLICK AQUI](https://www.youtube.com/watch?v=xNsSDqBj54s)
