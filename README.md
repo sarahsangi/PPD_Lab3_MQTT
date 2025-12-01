@@ -49,6 +49,8 @@ python miner_node.py
 ```
 2. O programa irá conectar ao Broker e aguardar uma confirmação manual.
 
+---
+
 3. Quando os 3 terminais estiverem prontos, pressione **ENTER** em cada um deles (rapidamente, um após o outro) para iniciar a sincronização e a eleição.
 
 ## 3. Relatório Técnico
@@ -88,6 +90,8 @@ O sistema foi validado com 3 participantes simultâneos. Os testes demonstraram:
 * **Competitividade:** Os logs comprovaram a alternância de vencedores entre os mineradores, validando a justiça da competição.
 
 * **Tratamento de Concorrência:** O sistema identificou e rejeitou corretamente soluções enviadas tardiamente (após outro minerador já ter vencido a rodada), mantendo a integridade da cadeia.
+
+---
 
 ## 4. Vídeo de Demonstração
 O vídeo abaixo demonstra a inicialização do Docker, a execução dos 3 nós, o processo de eleição automática e o ciclo de mineração contínua.
