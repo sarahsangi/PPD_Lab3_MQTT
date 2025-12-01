@@ -239,9 +239,9 @@ def handle_result_message(client, payload):
     res = payload.get('Result')
     tx = payload.get('TransactionID')
     if payload.get('ClientID') == CLIENT_ID:
-        if res == 1: print(f"\n[MINERADOR] 🏆 GANHEI A RODADA TX {tx}!")
-        elif res == 2: print(f"[MINERADOR] ⚠️ Cheguei tarde na TX {tx}.")
-        elif res == 0: print(f"[MINERADOR] ❌ Solução inválida na TX {tx}.")
+        if res == 1: print(f"\n[MINERADOR] GANHEI A RODADA TX {tx}!")
+        elif res == 2: print(f"[MINERADOR] Cheguei tarde na TX {tx}.")
+        elif res == 0: print(f"[MINERADOR] Solução inválida na TX {tx}.")
 
 # --- CONFIGURAÇÃO MQTT ---
 
@@ -275,7 +275,7 @@ def on_message(client, userdata, msg):
 
 def main():
     print(f"--- SISTEMA PPD (ID: {CLIENT_ID}) ---")
-    print("LEMBRETE: Reinicie o Docker antes de testar para evitar 'Zombies'!")
+    print("LEMBRETE: Reinicie o Docker antes de testar!")
     
     client = mqtt.Client(client_id=str(CLIENT_ID))
     client.on_connect = on_connect
