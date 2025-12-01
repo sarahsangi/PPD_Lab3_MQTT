@@ -62,18 +62,18 @@ A comunicação entre os processos ocorre de forma indireta através do Broker M
 **Algoritmo de Eleição Distribuída**
 Foi implementada uma máquina de estados (`Init` → `Election` → `Running`) para coordenar o comportamento dos nós:
 
-**Inicialização:** Os nós publicam seus identificadores na fila sd/init e aguardam o reconhecimento dos demais participantes.
+* **Inicialização:** Os nós publicam seus identificadores na fila `sd/init` e aguardam o reconhecimento dos demais participantes.
 
-**Votação:** Após o reconhecimento, os nós trocam mensagens de voto (VoteID aleatório) na fila sd/election.
+* **Votação:** Após o reconhecimento, os nós trocam mensagens de voto (`VoteID` aleatório) na fila `sd/election`.
 
-**Decisão:** O nó com o maior VoteID (com critério de desempate pelo maior ClientID) é eleito Líder e assume o papel de Controlador. Os demais tornam-se Mineradores.
+* **Decisão:** O nó com o maior `VoteID` (com critério de desempate pelo maior `ClientID`) é eleito Líder e assume o papel de **Controlador**. Os demais tornam-se **Mineradores**.
 
 **Estratégias de Sincronização** 
 Para mitigar problemas de latência e garantir a consistência do estado em um ambiente local simulado, foram utilizadas:
 
-**Mensagens Retidas (MQTT Retain):** As mensagens críticas de inicialização e eleição são enviadas com a flag retain=True. Isso garante que, mesmo que um nó entre na rede com milissegundos de atraso, ele receba imediatamente o estado atual dos votos, prevenindo deadlocks na eleição.
+* **Mensagens Retidas (MQTT Retain):** As mensagens críticas de inicialização e eleição são enviadas com a flag `retain=True`. Isso garante que, mesmo que um nó entre na rede com milissegundos de atraso, ele receba imediatamente o estado atual dos votos, prevenindo deadlocks na eleição.
 
-**Trava de Início Manual:** Uma barreira de entrada foi implementada para garantir que todos os processos estejam conectados ao Broker antes do início da troca de mensagens.
+* **Trava de Início Manual:** Uma barreira de entrada foi implementada para garantir que todos os processos estejam conectados ao Broker antes do início da troca de mensagens.
 
 **Prova de Trabalho (PoW)**
 O ciclo de mineração utiliza multithreading. Enquanto o nó escuta mensagens MQTT (como o anúncio de um novo bloco), quatro threads paralelas buscam uma solução SHA-1 que atenda ao desafio proposto pelo Controlador.
@@ -81,13 +81,13 @@ O ciclo de mineração utiliza multithreading. Enquanto o nó escuta mensagens M
 ### 3.3. Resultados e Testes
 O sistema foi validado com 3 participantes simultâneos. Os testes demonstraram:
 
-**Convergência da Eleição:** Em todas as execuções, os nós transicionaram corretamente de estado e concordaram com um único Líder.
+* **Convergência da Eleição:** Em todas as execuções, os nós transicionaram corretamente de estado e concordaram com um único Líder.
 
-**Ciclo Contínuo:** O Controlador gerou desafios sequenciais, variando a dificuldade conforme especificado.
+* **Ciclo Contínuo:** O Controlador gerou desafios sequenciais, variando a dificuldade conforme especificado.
 
-**Competitividade:** Os logs comprovaram a alternância de vencedores entre os mineradores, validando a justiça da competição.
+* **Competitividade:** Os logs comprovaram a alternância de vencedores entre os mineradores, validando a justiça da competição.
 
-**Tratamento de Concorrência:** O sistema identificou e rejeitou corretamente soluções enviadas tardiamente (após outro minerador já ter vencido a rodada), mantendo a integridade da cadeia.
+* **Tratamento de Concorrência:** O sistema identificou e rejeitou corretamente soluções enviadas tardiamente (após outro minerador já ter vencido a rodada), mantendo a integridade da cadeia.
 
 ## 4. Vídeo de Demonstração
 O vídeo abaixo demonstra a inicialização do Docker, a execução dos 3 nós, o processo de eleição automática e o ciclo de mineração contínua.
