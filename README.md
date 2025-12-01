@@ -70,7 +70,8 @@ Foi implementada uma máquina de estados (`Init` → `Election` → `Running`) p
 
 * **Votação:** Após o reconhecimento, os nós trocam mensagens de voto (`VoteID` aleatório) na fila `sd/election`.
 
-* **Decisão:** O nó com o maior `VoteID` (com critério de desempate pelo maior `ClientID`) é eleito Líder e assume o papel de **Controlador**. Os demais tornam-se **Mineradores**.
+* **Decisão:** O nó com o maior `VoteID` (com critério de desempate pelo maior `ClientID`) é eleito Líder e assume o papel de **Controlador**.
+  Os demais tornam-se **Mineradores**.
 
 **Estratégias de Sincronização** 
 
